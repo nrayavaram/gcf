@@ -1,0 +1,16 @@
+{
+	"records": [
+		{
+			"key": "google_check_mtu",
+			"source": "./google_compute_firewall.sentinel",
+			"sourceSum": "",
+			"dest": "/home/nrayavaram/google_compute_firewall/google_compute_firewall.sentinel"
+		},
+		{
+			"key": "google_compute_firewall",
+			"source": "./google_compute_firewall.sentinel",
+			"sourceSum": "",
+			"dest": "/home/nrayavaram/google_compute_firewall/google_compute_firewall.sentinel"
+		}
+	]
+}

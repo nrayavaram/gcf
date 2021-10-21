@@ -1,0 +1,22 @@
+{
+	"records": [
+		{
+			"key": "test/google_compute_firewall/failure/tfplan-functions",
+			"source": "../../common-functions/tfplan-functions/tfplan-functions.sentinel",
+			"sourceSum": "",
+			"dest": "/home/nrayavaram/google_compute_firewall/common-functions/tfplan-functions/tfplan-functions.sentinel"
+		},
+		{
+			"key": "test/google_compute_firewall/null/tfplan-functions",
+			"source": "../../common-functions/tfplan-functions/tfplan-functions.sentinel",
+			"sourceSum": "",
+			"dest": "/home/nrayavaram/google_compute_firewall/common-functions/tfplan-functions/tfplan-functions.sentinel"
+		},
+		{
+			"key": "test/google_compute_firewall/success/tfplan-functions",
+			"source": "../../common-functions/tfplan-functions/tfplan-functions.sentinel",
+			"sourceSum": "",
+			"dest": "/home/nrayavaram/google_compute_firewall/common-functions/tfplan-functions/tfplan-functions.sentinel"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+#This policy uses the Sentinel tfplan/v2 import to require that
+# all GCE compute instances have all mandatory labels
+
+# Note that the comparison is case-sensitive but also that GCE labels are only
+# allowed to contain lowercase letters, numbers, hypens, and underscores.
+
+# Import tfplan-functions.sentinel
+# with alias "plan"
+import "tfplan-functions" as plan
+import "strings"
+import "types"
+
+# Get all Pubsub Topics
+allResources = plan.find_resources("google_compute_network")
+
+
+mtu_messages = {}
+
+
+for allResources as address, rc {
+	firewall_uk_ports = plan.evaluate_attribute(rc.change.after.allow, "ports")
+	if types.type_of(firewall_uk_ports) is  "null" {
+		k_ports = plan.evaluate_attribute(rc, "ports")
+        console.log("ports: "+ports)
+		if((k_ports in [22,80,8080,3389])){
+        #if k_mtu is not 1500 {
+			mtu_messages[address] = "Resource " + address + " has mtu with value " +plan.to_string(k_ports) + " which is not allowed"
+		}
+	} else {
+		mtu_messages[address] = "Resource " + address + " has default ports which is not allowed"
+	}
+}
+
+
+print(mtu_messages)
+
+
+GCP_IC_MTU = rule { length(mtu_messages) is 0 }
+
+
+main = rule { GCP_IC_MTU}

@@ -1,0 +1,33 @@
+#######################
+import "tfplan-functions" as plan
+import "strings"
+import "types"
+
+
+import "tfplan/v2" as tfplan
+
+allUnsupportedSourceRanges = [
+	"/0",
+	"0.0.0.0",
+	"0.0.0.0/0",
+]
+
+# Get all dialogflow Resources
+allFirewallResources = plan.find_resources("google_compute_firewall")
+
+
+deny_public_ssh_access = rule {
+	all allFirewallResources as address, rc {
+		all filter rc.change.after.allow as allFirewallResources, allow {
+			allow.ports contains "22"
+		} as allFirewallResources {
+			all firewall.change.after.source_ranges as allFirewallResources, range {
+				range not in allUnsupportedSourceRanges
+			}
+		}
+	}
+}
+
+main = rule {
+	deny_public_ssh_access
+}
